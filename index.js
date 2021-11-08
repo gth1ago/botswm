@@ -1,6 +1,7 @@
 const fs = require('fs');
 const { Client, Collection, Intents, MessageEmbed } = require('discord.js');
-const { token } = require('./config.json');
+require('dotenv').config();
+// const { token } = require('./config.json');
 
 const client = new Client({
   intents: [
@@ -88,4 +89,4 @@ client.on('guildMemberAdd', async (member) => {
   channel.send({ content: `${member}`, embeds: [embed] });
 });
 
-client.login(token);
+client.login(process.env.BOT_TOKEN);
