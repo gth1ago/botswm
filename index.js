@@ -1,7 +1,6 @@
 const fs = require('fs');
 const { Client, Collection, Intents, MessageEmbed } = require('discord.js');
 require('dotenv').config();
-// const { token } = require('./config.json');
 
 const client = new Client({
   intents: [
@@ -29,9 +28,9 @@ client.on('ready', () => {
 });
 // status: 'idle', 0 = Jogando, 1 = Transmitindo, 2 = Ouvindo, 3 = Assistindo
 
-client.on('messageCreate', (message, interaction) => {
+client.on('messageCreate', (message) => {
   const verificationChanel = '907418105175740457';
-  const verificationMessage = 'concordo';
+
   if (message.channelId !== verificationChanel) return;
 
   if (message.author.bot) {
@@ -41,19 +40,17 @@ client.on('messageCreate', (message, interaction) => {
     return;
   }
 
+  const myGuild = client.guilds.cache.get('903259402683944972'); // ID server
+  const studantRole = myGuild.roles.cache.find((r) => r.name === 'estudante');
+  const verificationMessage = 'concordo';
+
   if (message.content === verificationMessage) {
-    //ganhar o cargo
-    message.channel.send('Ganhou o cargo');
+    message.member.roles.add(studantRole);
     message.delete();
   } else {
-    message.channel.send('Envie a mensagem certa: `concordo`');
     message.delete();
+    message.channel.send('Envie a mensagem certa: `concordo`');
   }
-  // const user = message.member;
-  // await interaction.reply(`Hi, ${user}.`);
-  // await interaction.followUp('Hi, <@user id>.');
-  // message.channel.send(`oi, ${user}`);
-  // console.log(message);
 });
 
 client.on('interactionCreate', async (interaction) => {
