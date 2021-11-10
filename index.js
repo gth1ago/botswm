@@ -29,14 +29,32 @@ client.on('ready', () => {
 });
 // status: 'idle', 0 = Jogando, 1 = Transmitindo, 2 = Ouvindo, 3 = Assistindo
 
-// client.on('messageCreate', (message) => {
-//   // if(message.author.bot)
-//   const user = message.member;
-//   // await interaction.reply(`Hi, ${user}.`);
-//   // await interaction.followUp('Hi, <@user id>.');
-//   message.channel.send(`oi, ${user}`);
-//   console.log(message);
-// });
+client.on('messageCreate', (message, interaction) => {
+  const verificationChanel = '907418105175740457';
+  const verificationMessage = 'concordo';
+  if (message.channelId !== verificationChanel) return;
+
+  if (message.author.bot) {
+    setTimeout(() => {
+      message.delete();
+    }, 5000);
+    return;
+  }
+
+  if (message.content === verificationMessage) {
+    //ganhar o cargo
+    message.channel.send('Ganhou o cargo');
+    message.delete();
+  } else {
+    message.channel.send('Envie a mensagem certa: `concordo`');
+    message.delete();
+  }
+  // const user = message.member;
+  // await interaction.reply(`Hi, ${user}.`);
+  // await interaction.followUp('Hi, <@user id>.');
+  // message.channel.send(`oi, ${user}`);
+  // console.log(message);
+});
 
 client.on('interactionCreate', async (interaction) => {
   if (!interaction.isCommand()) return;
@@ -57,14 +75,13 @@ client.on('interactionCreate', async (interaction) => {
 });
 
 client.on('guildMemberAdd', async (member) => {
-  let channel = client.channels.cache.get('903259403170480139');
-  let geral = client.channels.cache.get('903269619614253077');
+  const welcomeChannel = client.channels.cache.get('903259403170480139');
+  const geral = client.channels.cache.get('903269619614253077');
 
   const embed = new MessageEmbed()
-    .setColor('#0099ff')
+    .setColor('#ff6949')
     .setTitle(`${member.user.username}, seja bem-vindo(a)!`)
-    // .setDescription('Some description here #geral2')
-    .setThumbnail('https://i.imgur.com/AfFp7pu.png')
+    .setThumbnail(member.user.displayAvatarURL())
     .addFields(
       {
         name: 'Precisando de ajuda?',
@@ -83,10 +100,10 @@ client.on('guildMemberAdd', async (member) => {
     .setTimestamp()
     .setFooter(
       'Study With Me - UEM • © Todos os direitos reservados.',
-      'https://i.imgur.com/AfFp7pu.png'
+      `https://i.imgur.com/gGnElW9.png`
     );
 
-  channel.send({ content: `${member}`, embeds: [embed] });
+  welcomeChannel.send({ content: `${member}`, embeds: [embed] });
 });
 
 client.login(process.env.BOT_TOKEN);
