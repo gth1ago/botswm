@@ -9,7 +9,6 @@ const client = new Client({
     Intents.FLAGS.GUILD_MEMBERS,
   ],
 });
-//Intents.FLAGS.GUILD_MESSAGES
 
 client.commands = new Collection();
 const commandFiles = fs
@@ -24,9 +23,8 @@ for (const file of commandFiles) {
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
-  client.user.setPresence({ activities: [{ name: '/help', type: 2 }] });
+  client.user.setPresence({ activities: [{ name: '/ajuda', type: 2 }] });
 });
-// status: 'idle', 0 = Jogando, 1 = Transmitindo, 2 = Ouvindo, 3 = Assistindo
 
 client.on('messageCreate', (message) => {
   const verificationChanel = '907418105175740457';
