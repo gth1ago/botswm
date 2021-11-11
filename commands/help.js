@@ -2,9 +2,9 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName('help')
-    .setDescription('Replies with Help!'),
+    .setName('ajuda')
+    .setDescription('Tire suas dúvidas!'),
   async execute(interaction) {
-    await interaction.reply('Se vira, meu chapa! :face_with_spiral_eyes:');
+    await interaction.reply(':robot: Olá! Ainda estou em construção :wrench:');
   },
 };
