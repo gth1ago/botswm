@@ -72,7 +72,7 @@ client.on('interactionCreate', async (interaction) => {
 client.on('guildMemberAdd', async (member) => {
   const welcomeChannel = client.channels.cache.get('844354691566665730');
   const rulesChannel = client.channels.cache.get('844358432428523541');
-  const presentationChannel = client.channels.cache.get('844358432428523541');
+  const presentationChannel = client.channels.cache.get('866118739498106901');
 
   const embed = new MessageEmbed()
     .setColor('#ff6949')
