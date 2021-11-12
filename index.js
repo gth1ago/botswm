@@ -27,7 +27,7 @@ client.on('ready', () => {
 });
 
 client.on('messageCreate', (message) => {
-  const verificationChanel = '907418105175740457';
+  const verificationChanel = '844358432428523541';
 
   if (message.channelId !== verificationChanel) return;
 
@@ -38,8 +38,8 @@ client.on('messageCreate', (message) => {
     return;
   }
 
-  const myGuild = client.guilds.cache.get('903259402683944972'); // ID server
-  const studantRole = myGuild.roles.cache.find((r) => r.name === 'estudante');
+  const myGuild = client.guilds.cache.get('844344273847320576'); // ID server
+  const studantRole = myGuild.roles.cache.find((r) => r.name === 'Estudante');
   const verificationMessage = 'concordo';
 
   if (message.content === verificationMessage) {
@@ -47,7 +47,7 @@ client.on('messageCreate', (message) => {
     message.delete();
   } else {
     message.delete();
-    message.channel.send('Envie a mensagem certa: `concordo`');
+    message.channel.send('Por favor, envie a mensagem certa: `concordo`');
   }
 });
 
@@ -63,15 +63,16 @@ client.on('interactionCreate', async (interaction) => {
   } catch (error) {
     console.error(error);
     await interaction.reply({
-      content: 'There was an error while executing this command!',
+      content: 'Ocorreu um erro ao exeutar este comando!',
       ephemeral: true,
     });
   }
 });
 
 client.on('guildMemberAdd', async (member) => {
-  const welcomeChannel = client.channels.cache.get('903259403170480139');
-  const geral = client.channels.cache.get('903269619614253077');
+  const welcomeChannel = client.channels.cache.get('844354691566665730');
+  const rulesChannel = client.channels.cache.get('844358432428523541');
+  const presentationChannel = client.channels.cache.get('844358432428523541');
 
   const embed = new MessageEmbed()
     .setColor('#ff6949')
@@ -79,17 +80,13 @@ client.on('guildMemberAdd', async (member) => {
     .setThumbnail(member.user.displayAvatarURL())
     .addFields(
       {
-        name: 'Precisando de ajuda?',
-        value: `Leia sobre o servidor em #sobre-o-servidor e #avisos, ou nos envie mensagem em #ajude-me ||| ${geral}`,
+        name: 'Como começar?',
+        value: `Leia nossas ${rulesChannel} e concorde ao final para liberar os outros canais.`,
       },
       // { name: '\u200B', value: '\u200B' },
       {
-        name: 'Evite punições!',
-        value: 'Leia as nossas #regras para evitar ser punido no servidor!',
-      },
-      {
         name: 'Apresentação!',
-        value: 'Apresente-se em #apresentação para conhecermos você',
+        value: `Após ter sua conta verificada, sinta-se livre para contar um pouco sobre você para a gente em ${presentationChannel}`,
       }
     )
     .setTimestamp()
