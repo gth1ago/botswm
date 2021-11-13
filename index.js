@@ -27,6 +27,8 @@ client.on('ready', () => {
 });
 
 client.on('messageCreate', (message) => {
+  const { guildId } = require('./config.json');
+
   const verificationChanel = '844358432428523541';
 
   if (message.channelId !== verificationChanel) return;
@@ -38,8 +40,7 @@ client.on('messageCreate', (message) => {
     return;
   }
 
-  const myGuild = client.guilds.cache.get('844344273847320576'); // ID server
-  const studantRole = myGuild.roles.cache.find((r) => r.name === 'Estudante');
+  const studantRole = guildId.roles.cache.find((r) => r.name === 'Estudante');
   const verificationMessage = 'concordo';
 
   if (message.content === verificationMessage) {
