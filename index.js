@@ -74,6 +74,7 @@ client.on('guildMemberAdd', async (member) => {
   const welcomeChannel = client.channels.cache.get('844354691566665730');
   const rulesChannel = client.channels.cache.get('844358432428523541');
   const presentationChannel = client.channels.cache.get('866118739498106901');
+  const tutorialsChannel = client.channels.cache.get('885176211045777438');
 
   const embed = new MessageEmbed()
     .setColor('#ff6949')
@@ -82,12 +83,12 @@ client.on('guildMemberAdd', async (member) => {
     .addFields(
       {
         name: 'Como começar?',
-        value: `Leia nossas ${rulesChannel}`,
+        value: `Veja nossos ${tutorialsChannel} caso tenha alguma dúvida relacionada ao Discord e leia nossas ${rulesChannel}`,
       },
       // { name: '\u200B', value: '\u200B' },
       {
         name: 'Apresentação!',
-        value: `Sinta-se livre para contar um pouco sobre você para a gente em ${presentationChannel}`,
+        value: `Sinta-se livre para contar um pouco sobre você para a gente no canal de ${presentationChannel}`,
       }
     )
     .setTimestamp()
