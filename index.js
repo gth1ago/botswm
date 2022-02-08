@@ -26,31 +26,31 @@ client.on('ready', () => {
   client.user.setPresence({ activities: [{ name: '/ajuda', type: 2 }] });
 });
 
-client.on('messageCreate', (message) => {
-  const { guildId } = require('./config.json');
+// client.on('messageCreate', (message) => {
+//   const { guildId } = require('./config.json');
 
-  const verificationChanel = '844358432428523541';
+//   const verificationChanel = '844358432428523541';
 
-  if (message.channelId !== verificationChanel) return;
+//   if (message.channelId !== verificationChanel) return;
 
-  if (message.author.bot) {
-    setTimeout(() => {
-      message.delete();
-    }, 5000);
-    return;
-  }
+//   if (message.author.bot) {
+//     setTimeout(() => {
+//       message.delete();
+//     }, 5000);
+//     return;
+//   }
 
-  const studantRole = guildId.roles.cache.find((r) => r.name === 'Estudante');
-  const verificationMessage = 'concordo';
+//   const studantRole = guildId.roles.cache.find((r) => r.name === 'Estudante');
+//   const verificationMessage = 'concordo';
 
-  if (message.content === verificationMessage) {
-    message.member.roles.add(studantRole);
-    message.delete();
-  } else {
-    message.delete();
-    message.channel.send('Por favor, envie a mensagem certa: `concordo`');
-  }
-});
+//   if (message.content === verificationMessage) {
+//     message.member.roles.add(studantRole);
+//     message.delete();
+//   } else {
+//     message.delete();
+//     message.channel.send('Por favor, envie a mensagem certa: `concordo`');
+//   }
+// });
 
 client.on('interactionCreate', async (interaction) => {
   if (!interaction.isCommand()) return;
@@ -82,12 +82,12 @@ client.on('guildMemberAdd', async (member) => {
     .addFields(
       {
         name: 'Como começar?',
-        value: `Leia nossas ${rulesChannel} e concorde ao final para liberar os outros canais.`,
+        value: `Leia nossas ${rulesChannel}`,
       },
       // { name: '\u200B', value: '\u200B' },
       {
         name: 'Apresentação!',
-        value: `Após ter sua conta verificada, sinta-se livre para contar um pouco sobre você para a gente em ${presentationChannel}`,
+        value: `Sinta-se livre para contar um pouco sobre você para a gente em ${presentationChannel}`,
       }
     )
     .setTimestamp()
