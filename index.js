@@ -92,10 +92,10 @@ client.on('guildMemberAdd', async (member) => {
       }
     )
     .setTimestamp()
-    .setFooter(
-      'Study With Me - UEM • © Todos os direitos reservados.',
-      `https://i.imgur.com/gGnElW9.png`
-    );
+    .setFooter({
+      text: 'Study With Me - UEM • © Todos os direitos reservados.',
+      iconURL: `https://i.imgur.com/gGnElW9.png`
+    });
 
   welcomeChannel.send({ content: `${member}`, embeds: [embed] });
 });
